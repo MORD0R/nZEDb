@@ -38,9 +38,11 @@
 						{if $release.tvairdate != ""}<strong>Aired:</strong> {$release.tvairdate|date_format}<br>{/if}
 						{if $rage.country != ""}<strong>Country:</strong> {$rage.country}{/if}
 						<div style="margin-top:10px;">
-							<span class"label label-default"><a title="View all episodes from this series" href="{$smarty.const.WWW_TOP}/series/{$release.rageid}">All Episodes</a></span>
-							<span class"label label-default"><a target="_blank" href="{$site->dereferrer_link}http://www.tvrage.com/shows/id-{$release.rageid}" title="View at TV Rage">TV Rage</a></span>
-							<span class"label label-default"><a href="{$smarty.const.WWW_TOP}/rss?rage={$release.rageid}&amp;dl=1&amp;i={$userdata.id}&amp;r={$userdata.rsstoken}" title="Rss feed for this series">Series Rss Feed</a></span>
+							<span class="label label-default"><a title="View all episodes from this series" href="{$smarty.const.WWW_TOP}/series/{$release.rageid}">All Episodes</a></span>
+							<span class="label label-default"><a target="_blank" href="{$site->dereferrer_link}http://www.tvrage.com/shows/id-{$release.rageid}" title="View at TV Rage">TV Rage</a></span>
+							<span class="label label-default"><a href="{$smarty.const.WWW_TOP}/rss?rage={$release.rageid}&amp;dl=1&amp;i={$userdata.id}&amp;r={$userdata.rsstoken}" title="Rss feed for this series">Series Rss Feed</a></span>
+						<br><strong>Subtitle Search:</strong>
+								<br><a target="_blank" href="http://www.addic7ed.com/search.php?search={$release.tvtitle}" title="Addic7ed">Addic7ed</a> <a target="_blank" href="http://www.opensubtitles.org/en/search2/sublanguageid-all/searchonlytvseries-on/moviename-{$release.tvtitle}" title="Opensubtitles">OpenSubtitles</a> <a target="_blank" href="http://www.subtitleseeker.com/search/MOVIE_TITLES/{$release.tvtitle|replace:"S":"Season "|replace:"E":" Episode "}"title="SubtitleSeeker">SubtitleSeeker</a>
 						</div>
 					</td>
 				</tr>
@@ -55,10 +57,16 @@
 						<br><br>{if $movie.director != ""} <strong>Director:</strong> {$movie.director}<br>{/if}
 						<strong>Genre:</strong> {$movie.genre}
 						<br><strong>Starring:</strong> {$movie.actors}
+						{if $movie.trailer != ''}
+							<br /><strong>Trailer:</strong>
+							<div>{$movie.trailer}</div>
+						{/if}
 						<div style="margin-top:10px;">
-							<span class"label label-default"><a target="_blank" href="{$site->dereferrer_link}http://www.imdb.com/title/tt{$release.imdbid}/" title="View at IMDB">IMDB</a></span>
-							{if $movie.tmdbid != ''}<span class"label label-default"><a target="_blank" href="{$site->dereferrer_link}http://www.themoviedb.org/movie/{$movie.tmdbid}" title="View at TMDb">TMDb</a></span>{/if}
-							<span class"label label-default">
+							<span class="label label-default"><a target="_blank" href="{$site->dereferrer_link}http://www.imdb.com/title/tt{$release.imdbid}/" title="View at IMDB">IMDB</a></span>
+							{if $movie.tmdbid != ''}<span class="label label-default"><a target="_blank" href="{$site->dereferrer_link}http://www.themoviedb.org/movie/{$movie.tmdbid}" title="View at TMDb">TMDb</a></span>{/if}
+							<br><strong>Subtitle Search:</strong>
+								<br><a target="_blank" href="http://www.opensubtitles.org/search/sublanguageid-all/moviename-{$movie.title|replace:" ":"+"}"title="Opensubtitles">OpenSubtitles</a> <a target="_blank" href="http://www.subtitleseeker.com/search/MOVIE_TITLES/{$movie.title}"title="SubtitleSeeker">SubtitleSeeker</a>
+							<span class="label label-default">
 							{if $cpurl != "" && $cpapi != ""}
 								<a
 									class="sendtocouch"
@@ -82,9 +90,9 @@
 						{if $anidb.categories != ""}<strong>Categories:</strong> {$anidb.categories|escape:"htmlall"|replace:"|":", "}<br>{/if}
 						{if $release.tvairdate != "0000-00-00 00:00:00"}<strong>Aired:</strong> {$release.tvairdate|date_format}<br/>{/if}
 						<div style="margin-top:10px;">
-							<span class"label label-default"><a title="View all episodes from this anime" href="{$smarty.const.WWW_TOP}/anime/{$release.anidbid}">All Episodes</a></span>
-							<span class"label label-default"><a target="_blank" href="{$site->dereferrer_link}http://anidb.net/perl-bin/animedb.pl?show=anime&aid={$anidb.anidbid}" title="View at AniDB">AniDB</a></span>
-							<span class"label label-default"><a href="{$smarty.const.WWW_TOP}/rss?anidb={$release.anidbid}&amp;dl=1&amp;i={$userdata.id}&amp;r={$userdata.rsstoken}" title="RSS feed for this anime">Anime RSS Feed</a></span>
+							<span class="label label-default"><a title="View all episodes from this anime" href="{$smarty.const.WWW_TOP}/anime/{$release.anidbid}">All Episodes</a></span>
+							<span class="label label-default"><a target="_blank" href="{$site->dereferrer_link}http://anidb.net/perl-bin/animedb.pl?show=anime&aid={$anidb.anidbid}" title="View at AniDB">AniDB</a></span>
+							<span class="label label-default"><a href="{$smarty.const.WWW_TOP}/rss?anidb={$release.anidbid}&amp;dl=1&amp;i={$userdata.id}&amp;r={$userdata.rsstoken}" title="RSS feed for this anime">Anime RSS Feed</a></span>
 						</div>
 					</td>
 				</tr>
@@ -101,7 +109,7 @@
 						{if $con.platform != ""}<strong>Platform:</strong> {$con.platform|escape:"htmlall"}<br>{/if}
 						{if $con.releasedate != ""}<strong>Released:</strong> {$con.releasedate|date_format}{/if}
 						<div style="margin-top:10px;">
-							<span class"label label-default"><a target="_blank" href="{$site->dereferrer_link}{$con.url}/" title="View game at Amazon">Amazon</a></span>
+							<span class="label label-default"><a target="_blank" href="{$site->dereferrer_link}{$con.url}/" title="View game at Amazon">Amazon</a></span>
 						</div>
 					</td>
 				</tr>
@@ -122,7 +130,7 @@
 						{if $boo.ean != ""}<strong>EAN:</strong> {$boo.ean|escape:"htmlall"}<br>{/if}
 						{if $boo.overview != "null"}<strong>Overview:</strong> {$boo.overview|escape:"htmlall"}{/if}
 						<div style="margin-top:10px;">
-							<span class"label label-default"><a target="_blank" href="{$site->dereferrer_link}{$boo.url}/" title="View book at Amazon">Amazon</a></span>
+							<span class="label label-default"><a target="_blank" href="{$site->dereferrer_link}{$boo.url}/" title="View book at Amazon">Amazon</a></span>
 						</div>
 					</td>
 				</tr>
@@ -137,7 +145,7 @@
 						{if $music.publisher != ""}<strong>Publisher:</strong> {$music.publisher|escape:"htmlall"}<br>{/if}
 						{if $music.releasedate != ""}<strong>Released:</strong> {$music.releasedate|date_format}<br>{/if}
 						<div style="margin-top:10px;">
-							<span class"label label-default"><a target="_blank" href="{$site->dereferrer_link}{$music.url}/" title="View record at Amazon">Amazon</a></span>
+							<span class="label label-default"><a target="_blank" href="{$site->dereferrer_link}{$music.url}/" title="View record at Amazon">Amazon</a></span>
 						</div>
 					</td>
 				</tr>
