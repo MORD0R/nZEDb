@@ -58,8 +58,7 @@
 							<div class="bookcover">
 								<a
 									class="title thumbnail"
-									title="View amazon page"
-									href="{$site->dereferrer_link}{$result.url}"
+									title="{$result.bookinfoid}"
 								><img
 										class="shadow"
 										src="{$smarty.const.WWW_TOP}/covers/book/{if $result.cover == 1}{$result.bookinfoid}.jpg{else}no-cover.jpg{/if}"
